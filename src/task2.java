@@ -1,3 +1,5 @@
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
@@ -5,8 +7,6 @@ public class task2 {
     //    2*) Написать метод для обьединения 2 бинарных дерева:
 //    https://www.dropbox.com/s/lrblb3vjfi1qkwm/tree.png?dl=0
 //    В качестве параметра передается 2 ссылки на корневые узлы девева TreeNode, результат - корневой узел нового дерева TreeNode.
-
-// Java program to Merge Two Balanced Binary Search Trees
 
     public static void main(String[] args) {
 
@@ -21,8 +21,8 @@ public class task2 {
         BinarySearchTree tree1 = new BinarySearchTree();
         tree1.root = new TreeNode(1);
         tree1.root.left = new TreeNode(3);
-        tree1.root.right = new TreeNode(2);
         tree1.root.left.left = new TreeNode(5);
+        tree1.root.right = new TreeNode(2);
         System.out.println("Обход по порядку дерева #1 : ");
         tree1.inorder();
         System.out.println();
@@ -38,7 +38,7 @@ public class task2 {
         BinarySearchTree tree2 = new BinarySearchTree();
         tree2.root = new TreeNode(2);
         tree2.root.left = new TreeNode(1);
-        tree2.root.left.left = new TreeNode(4);
+        tree2.root.left.right = new TreeNode(4);
         tree2.root.right = new TreeNode(3);
         tree2.root.right.right = new TreeNode(7);
         System.out.println("Обход по порядку дерева #2 : ");

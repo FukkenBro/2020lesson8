@@ -10,17 +10,29 @@ public class BinarySearchTree {
 
     // обойти всё дерево по порядку
     public void inorder() {
-        inorderRecursion(this.root);
+        inorderRecursion(this.root,"root");
     }
 
-    // Рекурсивнивный метод обхода дерева по порядку
-    private void inorderRecursion(TreeNode node) {
+    /* Рекурсивнивный метод обхода дерева в глубину (LNR)
+    Я добавил print стрелочек указывающих на то при каком вызове был отрисован узел, однако такой обход не
+    точного представления о структуре дерева */
+
+    private void inorderRecursion(TreeNode node, String direction) {
         if (node == null) {
+            if (direction.equals("root")){
+            }
+            else if(direction.equals("left")){
+                System.out.print("< ");
+            }
+            else if(direction.equals("right")){
+                System.out.print("> ");
+            }
             return;
         }
-        inorderRecursion(node.left);
+        inorderRecursion(node.left,"left");
         System.out.print(node.data + " ");
-        inorderRecursion(node.right);
+        inorderRecursion(node.right,"right");
+
     }
 
     // Сохранить все узлы дерева по порядку в ArrayList
