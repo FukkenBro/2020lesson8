@@ -45,67 +45,22 @@ public class task2 {
         tree2.inorder();
         System.out.println();
 
-        BinarySearchTree resultTree = new BinarySearchTree();
-        resultTree.root = mergeTrees(tree1, tree2);
-        System.out.println("Обход по порядку дерева-result : ");
-        resultTree.inorder();
-        System.out.println();
+        merge(tree1.root, tree2.root);
+        System.out.println("Result : ");
+        tree1.inorder();
     }
 
-    //рекурсивная конвертация ArrayList >> BinarySearchTree
-    static TreeNode ALtoBST(ArrayList<Integer> list, int start, int end) {
-        if (start > end) {
-            return null;
+    static public TreeNode merge(TreeNode t1, TreeNode t2) {
+        if (t1 == null) {
+            return t2;
         }
-        //Средний элемент становится корнем
-        int mid = (start + end) / 2;
-        TreeNode node = new TreeNode(list.get(mid));
-        node.left = ALtoBST(list, start, mid - 1);
-        node.right = ALtoBST(list, mid + 1, end);
-        return node;
-    }
-
-    static ArrayList<Integer> mergeArrays(ArrayList<Integer> list1, ArrayList<Integer> list2, int m, int n) {
-
-        ArrayList<Integer> result = new ArrayList<>();
-
-        //индекс обхода дерева #1
-        int i = 0;
-        //индекс обхода дерева #2
-        int j = 0;
-
-        //обход обоих дерьев
-        while (i < m && j < n) {
-            if (list1.get(i) < list2.get(j)) {
-                result.add(list1.get(i));
-                i++;
-            } else {
-                result.add(list2.get(j));
-                j++;
-            }
+        if (t2 == null) {
+            return t1;
         }
-        while (i < m) {
-            result.add(list1.get(i));
-            i++;
-        }
-        while (j < n) {
-            result.add(list2.get(j));
-            j++;
-        }
-        return result;
-    }
-
-    static TreeNode mergeTrees(BinarySearchTree tree1, BinarySearchTree tree2) {
-        ArrayList<Integer> list1 = tree1.saveInorder(tree1.root);
-        ArrayList<Integer> list2 = tree2.saveInorder(tree2.root);
-
-        ArrayList<Integer> list3 = mergeArrays(list1, list2, list1.size(), list2.size());
-        LinkedHashSet<Integer> set3 = new LinkedHashSet<>(list3);
-        list3 = new ArrayList<>(set3);
-
-        int n = list3.size() - 1;
-        TreeNode node = ALtoBST(list3, 0, n);
-        return node;
+        t1.data += t2.data;
+        t1.left = merge(t1.left, t2.left);
+        t1.right = merge(t1.right, t2.right);
+        return t1;
     }
 
 
